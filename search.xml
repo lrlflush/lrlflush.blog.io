@@ -1,445 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Hexo Theme Redefine">
-    
-    <meta name="author" content="The Ncu Team">
-    <!-- preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    
-    <!--- Seo Part-->
-    
-    <link rel="canonical" href="https://lrlflush.github.io/2023/05/19/实验步骤/"/>
-    <meta name="robots" content="index,follow">
-    <meta name="googlebot" content="index,follow">
-    <meta name="revisit-after" content="1 days">
-    
-        <meta name="description" content="Nmap检测版本和系统：一. 实验目的1、通过对设备或者防火墙的探测来审计它的安全性。 2、探测目标主机所开放的端口。 3、网络存储，网络映射，维护和资产管理。 4、通过识别新的服务器审计网络的安全性。 5、探测网络上的主机。 二. 实验原理nmap使用tcp&#x2F;ip协议栈指纹来识别不同的操作系统和设备。在RFC规范中，有些地方对TCP&#x2F;IP的实现并没有强制规定，由于不同的TCP">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://lrlflush.github.io/2023/05/19/%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Nmap检测版本和系统：一. 实验目的1、通过对设备或者防火墙的探测来审计它的安全性。 2、探测目标主机所开放的端口。 3、网络存储，网络映射，维护和资产管理。 4、通过识别新的服务器审计网络的安全性。 5、探测网络上的主机。 二. 实验原理nmap使用tcp&#x2F;ip协议栈指纹来识别不同的操作系统和设备。在RFC规范中，有些地方对TCP&#x2F;IP的实现并没有强制规定，由于不同的TCP">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328083622190.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328083720146.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328083910211.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328084114117.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328084527361.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328090106129.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328090238963.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328090311564.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328090424398.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/bfd0e87a3ef31b231758467543e40c8d.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328090525827.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/6e024115ab8c9289d63a15a9476efac4.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/087f71cd3634b5f0619d3b39dc5f8e82.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/e77740b991b053288320d411110f2dbb.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/c6e2c0f8735fe6c6c2cb128b3cba59bd.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328091111007.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/e8a8520d4a3499085b0e508a37036259.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/a4223bb404ef87aef04c2441c2260bd8.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/bc77a6d6047ce83a6486a30d783f3573.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230328090927298.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/947e78a1480c62e032ad5ab06a7f4720.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/50bbffffa0bc319151d5259535c7841b.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/9b2b79163df59e2a803af94e300a9531.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/a073d09b64b27c0647b0045ed7be7196.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/f52ee24419c6e2e1c41bf4c26758bcbc.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/1f27af8d1fbe9147b13e3a257778e449.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/a4a498748f3d3d39d8da38b55ed6cd7c.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/6d5ed6ba3ba4e30d1a4aa50df5d0246e.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/e2f261a3f53eae6f4fd25021debe8804.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/aff7e07a1e6f7bc7c5a5b372a9e3a8e2.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/e58e378e706b762c3f0af172cba205d7.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230404082516616.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230404082339626.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230404082559903.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230411084242171.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/4b1e2245586c7210c495f113f39c908d.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/981ba8dbb39643b5bc88430b3bafd1f6.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230411083206856.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/b1b20907471e60a69534b3980b839cbc.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/4141b56a87421a8b6145463b6194cb90.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/5952a3c1eed3df6186e1e4d9f8d69d41.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/8371fef9f0a4b430814f11821592d35d.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/53132bdd5cd684be2ac2d894c2866422.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/1522043a3484578bdae4fb877b6c7a38.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230411083437443.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/c6a7983391e42946cb630afd27f853a7.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230411083547167.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230411083617481.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/af541edc225359d042f03736474c596d.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230411083805827.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/db9d3f7f0bec26cf514032b5eb60590d.jpg">
-<meta property="og:image" content="f:\ScreenShotTools\images\4f1194328d4a5cfa42964d52a43daa10.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\d90f5daaf7f8fadf15e98179fad100a2.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\b289e9fd2df62b00ee76035478bf1a2c.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\2b9fc38f0b928b00a5392e74b191c6fb.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\9dd90511fbc2ddb2962944d527d55750.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\de397d4ca9d20307d5ca33820263c246.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\aef11c2ac6165b89985f8fbee4592a77.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/3c8e5039c6fe6edfd2b294b403d48846.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/b9a5d7b4e374ece0ad163bb25333730d.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/9880afc8d9f603757ebc7df845f6ab2b.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230411084448771.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/9bfd9a7dcb066e74c41b5b8cee53a890.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/bced1529ee711261404ce7a88dd52888.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/989d551d84f009d589b535db039a76a2.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/8766647cde53b78e56fdc78846efcdb1.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/c8b2841aaeca8246f983b897e1f91426.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\dbcd8e4d9e42c3aaf0beda1d868f7ff8.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\d5760fce209873ac9a066fbb845b13ea.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230411080251202.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\c982a1eef6cfa7890968a86060102ac9.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418081950081.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\65fb8aa1e85fc5ecedd162c998df4feb.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418082513985.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418082606883.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\ff2a9423116112ae063934a09bd1df99.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418082419409-16835631851851.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\97864d437e7d063629aa60f2c79079ee.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418083041080.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418083312353.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418083353570.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418083426722.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418083455249.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\dd3e61e97450cc5ac28d19b920de4cf1.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418083805800.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418083926204.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418083852761.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418084017241.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418084051426.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418084218076.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418084534890.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418084551917.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418084730835.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418084829472.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230418084846510.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418085134518.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418085225027.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418085305529.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418085324053.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418085409748.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418085525743.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\69fa78146e0b60304aa419a4ce6bfbb5.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418085700010.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418085742806.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230509081131614.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/10c2e7529b7d5cdecc80dcc826363342.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230509081606857.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230509081845795.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/59bf1c720a686916c9a8496c2c06661c.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/78769bfa32b2fd6807546b60f3091ea8.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230509082046116.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/28c187f19f66b60a25d11a6226dbe3b1.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230509081845795.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/89a0792eb0d29e029085110d53ae9889.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230509082224196.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230509082301781.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230509082352776.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230509082413320.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418091258656.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418091109550.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418091332767.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418091627954.png">
-<meta property="og:image" content="f:\ScreenShotTools\images\image-20230418091706397.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/e46559cd3596a01b59d5fea86eb7f9c1.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/8bdc14fb3c26169c99d66bf6b1c5434f.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/db329396669a598d979c0352e05f2721.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/063af23177e973823fee0b2c887117db.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/55d49537b653b3dd1470325d4a8dfd91.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/8fc993eb6eae05b5b7207ab1fc5ef3f4.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/ccac60ea4153ac975ab9ccbc63653b29.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/5fd6939977d23fa61f870a0fc330b558.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425080436843.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425080610089.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425080818368.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425080932506.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425082243493.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425082809933.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425082958420.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425083130453.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425083324412.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/846e312bbe074e639aa52b2a04060ee5.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425083917655.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/99892c051bd53d1ec8acdc47252671ab.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425091817286.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/f4bc2d320b6b0f083953faaa0c26de6b.png">
-<meta property="og:image" content="f:/ScreenShotTools/images/image-20230425092315850.png">
-<meta property="article:published_time" content="2023-05-19T09:52:46.341Z">
-<meta property="article:modified_time" content="2023-05-18T13:54:27.460Z">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="f:/ScreenShotTools/images/image-20230328083622190.png">
-    
-    
-    <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
-    <meta name="theme-color" content="#A31F34">
-    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
-    <!--- Page Info-->
-    
-    <title>
-        
-        Test Blog
-    </title>
-    
-<link rel="stylesheet" href="/css/style.css">
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2023/05/19/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
 
-    
-<link rel="stylesheet" href="/assets/fonts.css">
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
 
-    <!--- Font Part-->
-    
-    
-    
-    
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
 
-    <!--- Inject Part-->
-    
-    <script id="hexo-configurations">
-    let Global = window.Global || {};
-    Global.hexo_config = {"hostname":"lrlflush.github.io","root":"/","language":"en","path":"search.xml"};
-    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Test Blog","subtitle":{"text":["生活很美好","世界很精彩"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"Read something","links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
-    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
-  </script>
-    
-    <!--- Fontawesome Part-->
-    
-<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
 
-    
-<link rel="stylesheet" href="/fontawesome/brands.min.css">
+<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>study</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>learning</title>
+    <url>/2023/05/20/learning/</url>
+    <content><![CDATA[<h1 id="About-Learning"><a href="#About-Learning" class="headerlink" title="About Learning"></a>About Learning</h1><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-    
-<link rel="stylesheet" href="/fontawesome/solid.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/regular.min.css">
-
-    
-    
-    
-    
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="main-content-container">
-
-        <div class="main-content-header">
-            <header class="navbar-container">
-    
-    <div class="navbar-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                
-                Test Blog
-                
-            </a>
-        </div>
-
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="" 
-                                    href="/"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-house"></i>
-                                        
-                                        HOME
-                                    
-                                </a>
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="" 
-                                    href="/archives"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-archive"></i>
-                                        
-                                        ARCHIVES
-                                    
-                                </a>
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                    
-                        <li class="navbar-item search search-popup-trigger">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile drawer -->
-    <div class="navbar-drawer">
-        <ul class="drawer-navbar-list">
-            
-                
-                    <li class="drawer-navbar-item flex-center">
-                        <a class="" 
-                        href="/"  >
-                             
-                                
-                                    <i class="fa-regular fa-house"></i>
-                                
-                                HOME
-                            
-                        </a>
-                    </li>
-                    <!-- Submenu -->
-                    
-            
-                
-                    <li class="drawer-navbar-item flex-center">
-                        <a class="" 
-                        href="/archives"  >
-                             
-                                
-                                    <i class="fa-regular fa-archive"></i>
-                                
-                                ARCHIVES
-                            
-                        </a>
-                    </li>
-                    <!-- Submenu -->
-                    
-            
-
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="main-content-body">
-
-            
-
-            <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
-
-            
-            
-                <div class="article-title">
-                    <h1 class="article-title-regular"></h1>
-                </div>
-            
-                
-            
-
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/redefine-avatar.svg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">The Ncu Team</span>
-                            
-                                <span class="author-label"></span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-05-19 17:52:46</span>
-        <span class="mobile">2023-05-19 17:52</span>
-        <span class="hover-info">Created</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-05-18 21:54:27</span>
-            <span class="mobile">2023-05-18 21:54</span>
-            <span class="hover-info">Updated</span>
-        </span>
-    
-
-    
-    
-
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>15k Words</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>56 Mins</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-            <div class="article-content markdown-body">
-                <h4 id="Nmap检测版本和系统："><a href="#Nmap检测版本和系统：" class="headerlink" title="Nmap检测版本和系统："></a>Nmap检测版本和系统：</h4><h5 id="一-实验目的"><a href="#一-实验目的" class="headerlink" title="一. 实验目的"></a>一. 实验目的</h5><p>1、通过对设备或者防火墙的探测来审计它的安全性。</p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>study</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/05/19/%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4/</url>
+    <content><![CDATA[<h4 id="Nmap检测版本和系统："><a href="#Nmap检测版本和系统：" class="headerlink" title="Nmap检测版本和系统："></a>Nmap检测版本和系统：</h4><h5 id="一-实验目的"><a href="#一-实验目的" class="headerlink" title="一. 实验目的"></a>一. 实验目的</h5><p>1、通过对设备或者防火墙的探测来审计它的安全性。</p>
 <p>2、探测目标主机所开放的端口。</p>
 <p>3、网络存储，网络映射，维护和资产管理。</p>
 <p>4、通过识别新的服务器审计网络的安全性。</p>
@@ -863,7 +464,7 @@
                      data-src="F:/ScreenShotTools/images/image-20230411084448771.png"
                       alt="image-20230411084448771"
                 >5、将下面的代码输入。</p>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;conio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        k = a % b;</span><br><span class="line">        a = b;</span><br><span class="line">        b = k;</span><br><span class="line">    &#125; <span class="keyword">while</span> (k != <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Ni</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (a * (++i) % b != <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Affine</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> c[<span class="number">100</span>];</span><br><span class="line">    <span class="type">int</span> length, i = <span class="number">0</span>, ka = <span class="number">0</span>, kb = <span class="number">0</span>;</span><br><span class="line">    system(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;********仿射密码 * ********n请输入最初的明文: &quot;</span>);</span><br><span class="line">    gets(c);</span><br><span class="line">    length = <span class="built_in">strlen</span>(c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入密钥（两数字）:&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;ka, &amp;kb);</span><br><span class="line">    getchar();</span><br><span class="line">    <span class="keyword">while</span> (gcd(ka, <span class="number">26</span>) != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;密钥输入错误，请重新输入&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;％d％d&quot;</span>, &amp;ka, &amp;kb);</span><br><span class="line">        getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c[i] &gt; <span class="number">96</span> &amp;&amp; c[i] &lt; <span class="number">123</span>)</span><br><span class="line">            c[i] = (ka * (c[i] - <span class="number">97</span>) + kb) % <span class="number">26</span> + <span class="number">97</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (c[i] &gt; <span class="number">64</span> &amp;&amp; c[i] &lt; <span class="number">91</span>)</span><br><span class="line">            c[i] = (ka * (c[i] - <span class="number">65</span>) + kb) % <span class="number">26</span> + <span class="number">65</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;n密文为:n％sn&quot;</span>, c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;按任何键返回……&quot;</span>);</span><br><span class="line">    getchar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">exAffine</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> c[<span class="number">100</span>];</span><br><span class="line">    <span class="type">int</span> length, i = <span class="number">0</span>, ka = <span class="number">0</span>, kb = <span class="number">0</span>, tmp;</span><br><span class="line">    system(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;********仿射密码 ********n请输入最初的密文:&quot;</span>);</span><br><span class="line">    gets(c);</span><br><span class="line">    length = <span class="built_in">strlen</span>(c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入密钥（两数字）:&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;％d％d&quot;</span>, &amp;ka, &amp;kb);</span><br><span class="line">    getchar();</span><br><span class="line">    <span class="keyword">while</span> (gcd(ka, <span class="number">26</span>) != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;密钥输入错误，请重新输入&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;％d％d&quot;</span>, &amp;ka, &amp;kb);</span><br><span class="line">        getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c[i] &gt; <span class="number">64</span> &amp;&amp; c[i] &lt; <span class="number">91</span>) &#123;</span><br><span class="line">            tmp = Ni(ka, <span class="number">26</span>) * ((c[i] - <span class="number">65</span>) - kb);</span><br><span class="line">            <span class="keyword">if</span> (tmp &lt; <span class="number">0</span>)</span><br><span class="line">                c[i] = tmp % <span class="number">26</span> + <span class="number">26</span> + <span class="number">65</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                c[i] = tmp % <span class="number">26</span> + <span class="number">65</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c[i]&gt; <span class="number">96</span> &amp;&amp; c[i] &lt; <span class="number">123</span>) &#123;</span><br><span class="line">            tmp = Ni(ka, <span class="number">26</span>) * ((c[i] - <span class="number">97</span>) - kb);</span><br><span class="line">            <span class="keyword">if</span> (tmp &lt; <span class="number">0</span>)</span><br><span class="line">                c[i] = tmp % <span class="number">26</span> + <span class="number">26</span> + <span class="number">97</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                c[i] = tmp % <span class="number">26</span> + <span class="number">97</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;n明文为:n％sn&quot;</span>, c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;按任何键返回……&quot;</span>);</span><br><span class="line">    getchar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> i = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\\n&quot;</span>, <span class="string">&quot;********请按1~3选择:*******&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\\n&quot;</span>, <span class="string">&quot;1.仿射加密/n2.仿射解密/n3.退出/n&quot;</span>);</span><br><span class="line">    i = getchar();</span><br><span class="line">    <span class="keyword">while</span> (i != <span class="string">&#x27;3&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">            Affine();</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">            exAffine();</span><br><span class="line">        i = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;conio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        k = a % b;</span><br><span class="line">        a = b;</span><br><span class="line">        b = k;</span><br><span class="line">    &#125; <span class="keyword">while</span> (k != <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Ni</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (a * (++i) % b != <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Affine</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> c[<span class="number">100</span>];</span><br><span class="line">    <span class="type">int</span> length, i = <span class="number">0</span>, ka = <span class="number">0</span>, kb = <span class="number">0</span>;</span><br><span class="line">    system(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;********仿射密码 * ********n请输入最初的明文: &quot;</span>);</span><br><span class="line">    gets(c);</span><br><span class="line">    length = <span class="built_in">strlen</span>(c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入密钥（两数字）:&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;ka, &amp;kb);</span><br><span class="line">    getchar();</span><br><span class="line">    <span class="keyword">while</span> (gcd(ka, <span class="number">26</span>) != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;密钥输入错误，请重新输入&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;％d％d&quot;</span>, &amp;ka, &amp;kb);</span><br><span class="line">        getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c[i] &gt; <span class="number">96</span> &amp;&amp; c[i] &lt; <span class="number">123</span>)</span><br><span class="line">            c[i] = (ka * (c[i] - <span class="number">97</span>) + kb) % <span class="number">26</span> + <span class="number">97</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (c[i] &gt; <span class="number">64</span> &amp;&amp; c[i] &lt; <span class="number">91</span>)</span><br><span class="line">            c[i] = (ka * (c[i] - <span class="number">65</span>) + kb) % <span class="number">26</span> + <span class="number">65</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;n密文为:n％sn&quot;</span>, c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;按任何键返回……&quot;</span>);</span><br><span class="line">    getchar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">exAffine</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> c[<span class="number">100</span>];</span><br><span class="line">    <span class="type">int</span> length, i = <span class="number">0</span>, ka = <span class="number">0</span>, kb = <span class="number">0</span>, tmp;</span><br><span class="line">    system(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;********仿射密码 ********n请输入最初的密文:&quot;</span>);</span><br><span class="line">    gets(c);</span><br><span class="line">    length = <span class="built_in">strlen</span>(c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入密钥（两数字）:&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;％d％d&quot;</span>, &amp;ka, &amp;kb);</span><br><span class="line">    getchar();</span><br><span class="line">    <span class="keyword">while</span> (gcd(ka, <span class="number">26</span>) != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;密钥输入错误，请重新输入&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;％d％d&quot;</span>, &amp;ka, &amp;kb);</span><br><span class="line">        getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c[i] &gt; <span class="number">64</span> &amp;&amp; c[i] &lt; <span class="number">91</span>) &#123;</span><br><span class="line">            tmp = Ni(ka, <span class="number">26</span>) * ((c[i] - <span class="number">65</span>) - kb);</span><br><span class="line">            <span class="keyword">if</span> (tmp &lt; <span class="number">0</span>)</span><br><span class="line">                c[i] = tmp % <span class="number">26</span> + <span class="number">26</span> + <span class="number">65</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                c[i] = tmp % <span class="number">26</span> + <span class="number">65</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c[i]&gt; <span class="number">96</span> &amp;&amp; c[i] &lt; <span class="number">123</span>) &#123;</span><br><span class="line">            tmp = Ni(ka, <span class="number">26</span>) * ((c[i] - <span class="number">97</span>) - kb);</span><br><span class="line">            <span class="keyword">if</span> (tmp &lt; <span class="number">0</span>)</span><br><span class="line">                c[i] = tmp % <span class="number">26</span> + <span class="number">26</span> + <span class="number">97</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                c[i] = tmp % <span class="number">26</span> + <span class="number">97</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;n明文为:n％sn&quot;</span>, c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;按任何键返回……&quot;</span>);</span><br><span class="line">    getchar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> i = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\\n&quot;</span>, <span class="string">&quot;********请按1~3选择:*******&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\\n&quot;</span>, <span class="string">&quot;1.仿射加密/n2.仿射解密/n3.退出/n&quot;</span>);</span><br><span class="line">    i = getchar();</span><br><span class="line">    <span class="keyword">while</span> (i != <span class="string">&#x27;3&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">            Affine();</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">            exAffine();</span><br><span class="line">        i = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -1099,9 +700,9 @@
 <p>2、使用unmask命令更改默认权限 </p>
 <p>3、使用chown命令更改文件的属主、属组</p>
 <h2 id="二-实验原理-11"><a href="#二-实验原理-11" class="headerlink" title="二. 实验原理"></a>二. 实验原理</h2><p>文件是操作系统用来存储信息的基本结构，是一组信息的集合，文件通过文件名来唯一的标识。linux中的文件名称最长可允许255个字符，这些字符可用A<del>Z、0</del>9、.、_、-等符号来表示。</p>
-<h2 id="三-实验内容-11"><a href="#三-实验内容-11" class="headerlink" title="三. 实验内容"></a>三. 实验内容</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、了解使用chmod按照要求更改用户对于特定文件的权限  2、使用unmask命令更改默认权限 3、使用chown命令更改文件的属主、属组 </span><br></pre></td></tr></table></figure></div>
+<h2 id="三-实验内容-11"><a href="#三-实验内容-11" class="headerlink" title="三. 实验内容"></a>三. 实验内容</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、了解使用chmod按照要求更改用户对于特定文件的权限  2、使用unmask命令更改默认权限 3、使用chown命令更改文件的属主、属组 </span><br></pre></td></tr></table></figure></div>
 
-<h2 id="四-实验环境描述-11"><a href="#四-实验环境描述-11" class="headerlink" title="四. 实验环境描述"></a>四. 实验环境描述</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">实验环境 VPC1(虚拟PC） 操作系统类型：linux，网络接口：eth0 VPC1 连接要求 PC 网络接口，本地连接与实验网络直连软件描述 1、学生机要求安装java环境 2、vpc安装linux 实验环境描述 （1）学生机与实验室网络直连; （2）VPC1与实验室网络直连; （3）学生机与VPC1物理链路连通； </span><br></pre></td></tr></table></figure></div>
+<h2 id="四-实验环境描述-11"><a href="#四-实验环境描述-11" class="headerlink" title="四. 实验环境描述"></a>四. 实验环境描述</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">实验环境 VPC1(虚拟PC） 操作系统类型：linux，网络接口：eth0 VPC1 连接要求 PC 网络接口，本地连接与实验网络直连软件描述 1、学生机要求安装java环境 2、vpc安装linux 实验环境描述 （1）学生机与实验室网络直连; （2）VPC1与实验室网络直连; （3）学生机与VPC1物理链路连通； </span><br></pre></td></tr></table></figure></div>
 
 <h2 id="五-实验步骤-11"><a href="#五-实验步骤-11" class="headerlink" title="五. 实验步骤"></a>五. 实验步骤</h2><p>1、学生单击实验拓扑按钮，进入实验场景，单击“打开控制台”按钮，进入目标主机。</p>
 <p>2、学生输入账号root,密码123456，登录到实验场景中的目标主机。如图所示：<img  
@@ -1233,7 +834,7 @@
 <p>Netfilter： Linux防火墙的“内核态” ，内核中的包过滤防火墙功能体系　</p>
 <p>Iptables功能强大、可以用于对防火墙规则的增、删、改、查。防火墙规则是以表的形式存储的， 而这些表集成在内核中。</p>
 <h2 id="三-实验内容-13"><a href="#三-实验内容-13" class="headerlink" title="三. 实验内容"></a>三. 实验内容</h2><p>对iptables作一个简单的介绍</p>
-<h2 id="四-实验环境描述-13"><a href="#四-实验环境描述-13" class="headerlink" title="四. 实验环境描述"></a>四. 实验环境描述</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PC机：Redhat5.1.19.6 账号密码:root/123456 </span><br></pre></td></tr></table></figure></div>
+<h2 id="四-实验环境描述-13"><a href="#四-实验环境描述-13" class="headerlink" title="四. 实验环境描述"></a>四. 实验环境描述</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">PC机：Redhat5.1.19.6 账号密码:root/123456 </span><br></pre></td></tr></table></figure></div>
 
 <h2 id="五-实验步骤-13"><a href="#五-实验步骤-13" class="headerlink" title="五. 实验步骤"></a>五. 实验步骤</h2><p>iptables防火墙可以用于创建过滤(filter)与NAT规则。</p>
 <p>所有Linux发行版都能使用iptables，因此理解如何配置 iptables将会帮助你更有效地管理Linux防火墙。如果你是第一次接触iptables，你会觉得它很复杂，但是一旦你理解iptables的工 作原理，你会发现其实它很简单。</p>
@@ -1381,10 +982,10 @@
                      data-src="F:/ScreenShotTools/images/image-20230425080610089.png"
                       alt="image-20230425080610089"
                 >上添加规则设置为：前5个包正常通过，后续的包每1分钟通过6个，即每10秒钟通过1个</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT  -p icmp  -m limit --limit 6/m --limit-burst 5 -j ACCEPT</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">iptables -A INPUT  -p icmp  -m limit --limit 6/m --limit-burst 5 -j ACCEPT</span><br></pre></td></tr></table></figure></div>
 
 <p>设置默认策略为丢包，否则前面设置无效</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -P INPUT ｄｒｏｐ（注ｄｒｏｐ大写）</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT ｄｒｏｐ（注ｄｒｏｐ大写）</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -1400,12 +1001,12 @@
                       alt="image-20230425080932506"
                 ></p>
 <p>(补充)抵御DOS：可以允许外网网卡每个IP最多15个初始连接,超过的丢弃</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -i eth1(外网网卡) -p tcp --syn -m connlimit --connlimit-above 15 -j ｄｒｏｐ（注ｄｒｏｐ小写） ``iptables -A INPUT -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">iptables -A INPUT -i eth1(外网网卡) -p tcp --syn -m connlimit --connlimit-above 15 -j ｄｒｏｐ（注ｄｒｏｐ小写） ``iptables -A INPUT -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br></pre></td></tr></table></figure></div>
 
 
 
 <p>防止SYN攻击 轻量级预防&#96;</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">iptables -N syn-flood</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p tcp --syn -j syn-flood</span><br><span class="line"></span><br><span class="line">iptables -I syn-flood -p tcp -m limit --limit 3/s --limit-burst 6 -j RETURN</span><br><span class="line"></span><br><span class="line">iptables -A syn-flood -j REJECT</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">iptables -N syn-flood</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p tcp --syn -j syn-flood</span><br><span class="line"></span><br><span class="line">iptables -I syn-flood -p tcp -m limit --limit 3/s --limit-burst 6 -j RETURN</span><br><span class="line"></span><br><span class="line">iptables -A syn-flood -j REJECT</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -1467,7 +1068,7 @@
                      data-src="F:/ScreenShotTools/images/99892c051bd53d1ec8acdc47252671ab.png"
                       alt="图片描述"
                 ></p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">原：var RULE_PATH ../rules 改为: var RULE_PATH C:＼Snort＼rules  </span><br><span class="line">原: #dynamicpreprocessor directory /usr/local/lib/snort_dynamicpreprocessor/ 改为:dynamicpreprocessor directory C:＼Snort＼lib＼snort_dynamicpreprocessor(后面一定不要有/)  </span><br><span class="line">原: #dynamicengine /usr/local/lib/snort_dynamicengine/libsf_engine.so 改为:dynamicengine C:＼Snort＼lib＼snort_dynamicengine＼sf_engine.dll  </span><br><span class="line">原：dynamicdetection directory /usr/local/lib/snort_dynamicrules 改为：dynamicdetection directory C:＼Snort＼lib＼snort_dynamicrules </span><br><span class="line">然后将C:Snort＼so_rules＼precompiled＼FC-9＼i386＼2.9.0.3里的所有文件拷贝到C:＼Snort＼lib＼snort_dynamicrules（该文件需要新建snort_dynamicrules） </span><br><span class="line">还需要修改c:＼snort配置文件 etc里面的snort.conf文件 原: include classification.config 改为: include C:＼Snort＼etc＼classification.config  </span><br><span class="line">原: include reference.config 改为: include C:＼Snort＼etc＼reference.config  </span><br><span class="line">原: # include threshold.conf 改为: include C:＼Snort＼etc＼threshold.conf  </span><br><span class="line">原：#Does nothing in IDS mode preprocessor normalize_ip4 preprocessor normalize_tcp: ips ecn stream preprocessor normalize_icmp4 preprocessor normalize_ip6 preprocessor normalize_icmp6 改成 #preprocessor normalize_ip4 #preprocessor normalize_tcp: ips ecn stream #preprocessor normalize_icmp4 #preprocessor normalize_ip6 #preprocessor normalize_icmp6 </span><br><span class="line">原：preprocessor http_inspect: global iis_unicode_map unicode.map 1252 compress_depth 20480 decompress_depth 20480 改为：preprocessor http_inspect: global iis_unicode_map C:＼Snort＼etc＼unicode.map 1252 compress_depth 65535 decompress_depth 65535（因为在windows下unicode.map这个文件在etc文件夹下。</span><br><span class="line">将compress_depth 和decompress_depth 设置compress_depth 65535 decompress_depth 65535） 将所有的ipvar修改为var 将#include $RULE_PATH/web-misc.rules注释掉。 ``进入dos，</span><br><span class="line">在＼snort＼bin目录用snort -W查看系统可用网络接口。记住需要监视的网卡的编号，比如为1，那么在以后的使用中，用-i 1就可以选择对应的网卡。</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">原：var RULE_PATH ../rules 改为: var RULE_PATH C:＼Snort＼rules  </span><br><span class="line">原: #dynamicpreprocessor directory /usr/local/lib/snort_dynamicpreprocessor/ 改为:dynamicpreprocessor directory C:＼Snort＼lib＼snort_dynamicpreprocessor(后面一定不要有/)  </span><br><span class="line">原: #dynamicengine /usr/local/lib/snort_dynamicengine/libsf_engine.so 改为:dynamicengine C:＼Snort＼lib＼snort_dynamicengine＼sf_engine.dll  </span><br><span class="line">原：dynamicdetection directory /usr/local/lib/snort_dynamicrules 改为：dynamicdetection directory C:＼Snort＼lib＼snort_dynamicrules </span><br><span class="line">然后将C:Snort＼so_rules＼precompiled＼FC-9＼i386＼2.9.0.3里的所有文件拷贝到C:＼Snort＼lib＼snort_dynamicrules（该文件需要新建snort_dynamicrules） </span><br><span class="line">还需要修改c:＼snort配置文件 etc里面的snort.conf文件 原: include classification.config 改为: include C:＼Snort＼etc＼classification.config  </span><br><span class="line">原: include reference.config 改为: include C:＼Snort＼etc＼reference.config  </span><br><span class="line">原: # include threshold.conf 改为: include C:＼Snort＼etc＼threshold.conf  </span><br><span class="line">原：#Does nothing in IDS mode preprocessor normalize_ip4 preprocessor normalize_tcp: ips ecn stream preprocessor normalize_icmp4 preprocessor normalize_ip6 preprocessor normalize_icmp6 改成 #preprocessor normalize_ip4 #preprocessor normalize_tcp: ips ecn stream #preprocessor normalize_icmp4 #preprocessor normalize_ip6 #preprocessor normalize_icmp6 </span><br><span class="line">原：preprocessor http_inspect: global iis_unicode_map unicode.map 1252 compress_depth 20480 decompress_depth 20480 改为：preprocessor http_inspect: global iis_unicode_map C:＼Snort＼etc＼unicode.map 1252 compress_depth 65535 decompress_depth 65535（因为在windows下unicode.map这个文件在etc文件夹下。</span><br><span class="line">将compress_depth 和decompress_depth 设置compress_depth 65535 decompress_depth 65535） 将所有的ipvar修改为var 将#include $RULE_PATH/web-misc.rules注释掉。 ``进入dos，</span><br><span class="line">在＼snort＼bin目录用snort -W查看系统可用网络接口。记住需要监视的网卡的编号，比如为1，那么在以后的使用中，用-i 1就可以选择对应的网卡。</span><br></pre></td></tr></table></figure></div>
 
 
 
@@ -1489,440 +1090,6 @@
                      data-src="F:/ScreenShotTools/images/image-20230425092315850.png"
                       alt="image-20230425092315850"
                 ></p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snort_dynamicrules</span><br></pre></td></tr></table></figure></div>
-            </div>
-
-            
-                <div class="post-copyright-info">
-                    <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>Title:</strong> </li>
-        <li><strong>Author:</strong> The Ncu Team</li>
-        <li><strong>Created at:</strong> 2023-05-19 17:52:46</li>
-        
-            <li>
-                <strong>Updated at:</strong> 2023-05-18 21:54:27
-            </li>
-        
-        <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2023/05/19/实验步骤/
-        </li>
-        <li>
-            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
-        </li>
-    </ul>
-</div>
-
-                </div>
-            
-
-            
-
-            
-
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/05/20/learning/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">learning</span>
-                                    <span class="post-nav-item">Prev posts</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2023/05/19/hello-world/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">Hello World</span>
-                                    <span class="post-nav-item">Next posts</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
-
-
-            
-                <div class="comment-container">
-                    <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fa-solid fa-comments"></i>&nbsp;Comments
-    </div>
-    
-
-        
-            
-    <div id="gitalk-container"></div>
-    <script data-pjax
-            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-    <script data-pjax>
-
-        function loadGitalk() {
-            let __gitalk__pathname = decodeURI(location.pathname);
-            const __gitalk__pathnameLength = __gitalk__pathname.length;
-            const __gitalk__pathnameMaxLength = 50;
-            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
-            }
-
-            try {
-                Gitalk && new Gitalk({
-                    clientID: 'dfb2d64a84b82503dd67',
-                    clientSecret: '5fc8cc353239ca1121385bc19252cd11a3319d17',
-                    repo: 'comments',
-                    owner: 'lrlflush',
-                    admin: ['lrlflush'],
-                    id: __gitalk__pathname,
-                    language: 'en'
-                }).render('gitalk-container');
-
-            } catch (e) {
-                window.Gitalk = null;
-            }
-        }
-
-        if ('true') {
-            const loadGitalkTimeout = setTimeout(() => {
-                loadGitalk();
-                clearTimeout(loadGitalkTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadGitalk);
-        }
-    </script>
-
-
-
-        
-    
-</div>
-
-                </div>
-            
-        </div>
-
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">On this page</div>
-        <div class="page-title"></div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%A8%E9%A9%AC%E6%8A%80%E6%9C%AF%E5%88%9D%E7%BA%A7%E5%AE%9E%E9%AA%8C"><span class="nav-text">木马技术初级实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DSA%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C"><span class="nav-text">DSA签名算法实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-5"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-5"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-5"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-5"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E4%B9%8B%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81"><span class="nav-text">古典密码之仿射密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-6"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-6"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-6"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-6"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81-DES%E5%AE%9E%E9%AA%8C"><span class="nav-text">对称密码-DES实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-7"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-7"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-7"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-7"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-7"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94%EF%BC%9A%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81-RSA%E5%AE%9E%E9%AA%8C"><span class="nav-text">实验五：非对称密码-RSA实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-8"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-8"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-8"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-8"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-8"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash%E7%AE%97%E6%B3%95%E4%B9%8BMD5"><span class="nav-text">Hash算法之MD5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-9"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-9"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-9"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-9"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-9"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E4%B9%8BRSA"><span class="nav-text">数字签名之RSA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-10"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-10"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-10"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-10"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-10"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-text">linux基本应用-文件权限管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-11"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-11"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-11"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-11"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-11"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="nav-text">Linux文件系统管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-12"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-12"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-12"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-12"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-12"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables%E7%AE%80%E4%BB%8B"><span class="nav-text">iptables简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-13"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-13"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-13"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-13"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-13"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables%E5%AF%B9IP%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-text">iptables对IP的管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-14"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-14"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-14"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-14"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-14"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables%E5%AF%B9%E7%AB%AF%E5%8F%A3%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-text">iptables对端口的管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-15"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-15"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-15"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-15"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-15"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables%E5%AF%B9%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-text">iptables对协议的管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-16"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-16"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-16"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-16"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-16"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables%E6%8A%B5%E5%BE%A1%E8%BD%BB%E9%87%8F%E7%BA%A7Ddos%E6%94%BB%E5%87%BB"><span class="nav-text">iptables抵御轻量级Ddos攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-17"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-17"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-17"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-17"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-17"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E8%AE%B0%E5%BD%95%E5%AE%9E%E9%AA%8C"><span class="nav-text">数据包记录实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-18"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-18"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-18"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-18"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-18"><span class="nav-text">五. 实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A5%E4%BE%B5%E8%A1%8C%E4%B8%BA%E6%A3%80%E6%B5%8B%E5%AE%9E%E9%AA%8C"><span class="nav-text">入侵行为检测实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-19"><span class="nav-text">一. 实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-19"><span class="nav-text">二. 实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-19"><span class="nav-text">三. 实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%8F%8F%E8%BF%B0-19"><span class="nav-text">四. 实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-19"><span class="nav-text">五. 实验步骤</span></a></li></ol>
-
-    </div>
-</div>
-            </div>
-        
-    </div>
-</div>
-
-
-                
-
-            </div>
-            
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info">
-            &copy;
-            
-              <span>2023</span>
-              -
-            
-            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">The Ncu Team</a>
-        </div>
-        
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
-                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
-                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
-                <br>
-            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
-        </div>
-        
-        
-        
-            <div id="start_div" style="display:none">
-                2023/5/19 17:45:30
-            </div>
-            <div>
-                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
-            </div>
-        
-        
-        
-            <script async data-pjax>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
-        
-        
-        
-    </div>  
-</footer>
-        </div>
-    </div>
-
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fa-regular fa-comments"></i>
-            </li>
-        
-    </ul>
-</div>
-
-        </div>
-    
-
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-expand-width flex-center">
-            <i class="fa-regular fa-expand"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
-</div>
-
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fa-solid fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fa-solid fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-
-</main>
-
-
-
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/main.js"></script>
-
-<script src="/js/layouts/navbarShrink.js"></script>
-
-<script src="/js/tools/scrollTopBottom.js"></script>
-
-<script src="/js/tools/lightDarkSwitch.js"></script>
-
-
-
-    
-<script src="/js/tools/localSearch.js"></script>
-
-
-
-
-    
-<script src="/js/tools/codeBlock.js"></script>
-
-
-
-
-    
-<script src="/js/layouts/lazyload.js"></script>
-
-
-
-
-    
-<script src="/js/tools/runtime.js"></script>
-
-    
-<script src="/js/layouts/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
-
-
-
-
-  
-<script src="/js/libs/Typed.min.js"></script>
-
-  
-<script src="/js/plugins/typed.js"></script>
-
-
-
-
-
-
-
-
-<div class="post-scripts pjax">
-    
-        
-<script src="/js/tools/tocToggle.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-<script src="/js/layouts/toc.js"></script>
-
-<script src="/js/plugins/tabs.js"></script>
-
-    
-</div>
-
-
-    
-<script src="/js/libs/pjax.min.js"></script>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax',
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            Global.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            Global.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            Global.refresh();
-        });
-    });
-</script>
-
-
-
-
-</body>
-</html>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">snort_dynamicrules</span><br></pre></td></tr></table></figure></div>]]></content>
+  </entry>
+</search>
