@@ -27,26 +27,26 @@
   <entry>
     <title>showPic</title>
     <url>/2023/05/20/showPic/</url>
-    <content><![CDATA[<img  
+    <content><![CDATA[<div align=left>
+    <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/apple.jpg"
-                      width="50%" height="50%"
+                      width="25%" height="25%"
                 >
-
-<img  
+    <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/book.jpg"
-                      width="50%" height="50%"
+                      width="25%" height="25%"
                 >
-
-<img  
+    <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://lrlflush.github.io/images/pexels.jpg"
-                      width="50%" height="50%"
+                      width="25%" height="25%"
                 >
+</div>
 
 ]]></content>
       <tags>
