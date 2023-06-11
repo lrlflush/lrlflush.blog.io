@@ -27,24 +27,24 @@
   <entry>
     <title>showPic</title>
     <url>/2023/05/20/showPic/</url>
-    <content><![CDATA[<div align=left>
+    <content><![CDATA[<div style="display:inline-block;">
     <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/apple.jpg"
-                      width="25%" height="25%"
+                      width="25%" style="float: left"
                 >
     <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/book.jpg"
-                      width="25%" height="25%"
+                      width="25%" style="float: center"
                 >
     <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://lrlflush.github.io/images/pexels.jpg"
-                      width="25%" height="25%"
+                      width="25%" style="float: right"
                 >
 </div>
 
