@@ -38,13 +38,13 @@
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/book.jpg"
-                      width="25%" style="float: center"
+                      width="25%" style="float: left"
                 >
     <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://lrlflush.github.io/images/pexels.jpg"
-                      width="25%" style="float: right"
+                      width="25%" style="float: left"
                 >
 </div>
 
