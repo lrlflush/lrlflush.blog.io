@@ -27,9 +27,27 @@
   <entry>
     <title>showPic</title>
     <url>/2023/05/20/showPic/</url>
-    <content><![CDATA[<p>![Test](&#x2F;images&#x2F;apple.jpg &#x3D;100x100)</p>
-<p>![Test](&#x2F;images&#x2F;book.jpg 100x100)</p>
-<p>![Test](<a href="https://lrlflush.github.io/images/pexels.jpg">https://lrlflush.github.io/images/pexels.jpg</a> &#x3D;100x100)</p>
+    <content><![CDATA[<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/apple.jpg"
+                      width="50%" height="50%"
+                >
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/book.jpg"
+                      width="50%" height="50%"
+                >
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://lrlflush.github.io/images/pexels.jpg"
+                      width="50%" height="50%"
+                >
+
 ]]></content>
       <tags>
         <tag>test</tag>
